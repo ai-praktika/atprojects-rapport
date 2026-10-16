@@ -563,7 +563,7 @@ const SHARE_URL = "https://ai-praktika.github.io/atprojects-rapport/";
 const OPEN_MS = 10 * 60 * 1000;                      // ключ открыт 10 минут, потом сам закрывается
 let UNTIL = 0, IS_OWNER = false, KEY_BUSY = false, KEY_ERR = false, KEY_MSG = "";
 const ADMIN_HASH = "9cecbde0f4278e584e11469c2a0f58a5e82995aad957981107a862a580366d18";
-let IS_ADMIN_DEV = load("atp-admin") === ADMIN_HASH;   // этот телефон/ноутбук уже подтвердил код администратора
+let IS_ADMIN_DEV = ["atp-admin", "bilto-admin", "ingbelg-admin"].some(k => load(k) === ADMIN_HASH);   // тот же код, что в рапортах Bilto и INGBELG: устройство, где Ибрагим уже вошёл, видит кнопку и здесь   // этот телефон/ноутбук уже подтвердил код администратора
 const IS_LOCAL = location.protocol === "file:";      // открыт файл с ноутбука Ибрагима (папка «РАПОРТ БИЛТО») — это он
 const isAdmin = () => IS_OWNER || IS_ADMIN_DEV || IS_LOCAL;
 try { UNTIL = Number(JSON.parse(document.getElementById("lockstate").textContent).until) || 0; } catch (e) {}
